@@ -1,5 +1,3 @@
-# fINALLYYY wORKING pdf IS ACHIVED
-
 # ---------------- Streamlit Block-style Timetable with Compact 4-per-row PDF Layout ---------------- #
 import streamlit as st
 import pandas as pd
@@ -8,8 +6,6 @@ from fpdf import FPDF
 import tempfile
 import os
 
-
-# ----------------- (UNCHANGED) Block-generation logic (keep your logic) ----------------- #
 def generate_block_timetable(data, year, month):
     """
     Generate block-style timetable:
@@ -82,7 +78,7 @@ def generate_summary(timetable_blocks, fixed_vehicles, days_in_month):
         summary.append({"Vehicle": v, "Working Days": work_days, "Holidays": holidays})
     return pd.DataFrame(summary)
 
-# ----------------- PDF layout (only this part changed) ----------------- #
+# ----------------- PDF layout ----------------- #
 class CompactPDF(FPDF):
     def header(self):
         # Title header
@@ -239,3 +235,4 @@ if uploaded_file:
         csv_summary = summary.to_csv(index=False).encode('utf-8')
         st.download_button("⬇️ Download Vehicle Summary CSV", data=csv_summary,
                            file_name=f"summary_{year}_{month_num}.csv", mime="text/csv")
+
