@@ -189,7 +189,7 @@ def generate_pdf_compact_arranged(timetable_blocks, month_name, year, file_path,
     pdf.output(file_path)
 
 # ----------------- Streamlit UI ----------------- #
-st.set_page_config(layout="wide")
+st.set_page_config(page_title="Krishna Dudh Vehicle Timetable", page_icon="🚛",layout="wide")
 st.title("🚍 Krishna Dudh - Vehicle-Route Timetable")
 
 uploaded_file = st.file_uploader("Upload Excel file (with 'RUTE NAME' and 'GADI_NUMBER')", type=["xlsx"])
@@ -235,4 +235,5 @@ if uploaded_file:
         csv_summary = summary.to_csv(index=False).encode('utf-8')
         st.download_button("⬇️ Download Vehicle Summary CSV", data=csv_summary,
                            file_name=f"summary_{year}_{month_num}.csv", mime="text/csv")
+
 
