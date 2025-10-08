@@ -1,6 +1,3 @@
-# fINALLYYY wORKING pdf IS ACHIVED with correct colour code
-
-# ---------------- Streamlit Block-style Timetable with Compact 4-per-row PDF Layout ---------------- #
 import streamlit as st
 import pandas as pd
 import calendar as cal
@@ -8,7 +5,6 @@ from fpdf import FPDF
 import tempfile
 import os
 
-# ----------------- (UNCHANGED) Block-generation logic (keep your logic) ----------------- #
 def generate_block_timetable(data, year, month):
     """
     Generate block-style timetable:
@@ -26,7 +22,7 @@ def generate_block_timetable(data, year, month):
 
     days_in_month = cal.monthrange(year, month)[1]
 
-    # Pre-assign holidays for fixed vehicles (your existing approach)
+    # Pre-assign holidays for fixed vehicles
     holidays = {v: [] for v in fixed_vehicles}
     for i, v in enumerate(fixed_vehicles):
         day = (i % 5) + 6
@@ -81,7 +77,7 @@ def generate_summary(timetable_blocks, fixed_vehicles, days_in_month):
         summary.append({"Vehicle": v, "Working Days": work_days, "Holidays": holidays})
     return pd.DataFrame(summary)
 
-# ----------------- PDF layout (only this part changed) ----------------- #
+# ----------------- PDF layout----------------- #
 class CompactPDF(FPDF):
     def header(self):
         # Title header
@@ -253,7 +249,7 @@ if uploaded_file:
                            mime="text/csv")
 
 
-        # Summary (unchanged)
+        # Summary
         fixed_vehicles = data['GADI_NUMBER'].dropna().tolist()[:14]
         summary = generate_summary(timetable_blocks, fixed_vehicles, days_in_month)
         st.subheader("📊 Vehicle Work & Holiday Summary")
@@ -263,5 +259,6 @@ if uploaded_file:
                            file_name=f"summary_{year}_{month_num}.csv", mime="text/csv")
         
         
+
 
 
