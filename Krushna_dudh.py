@@ -185,10 +185,10 @@ def generate_pdf_compact_arranged(timetable_blocks, month_name, year, file_path,
     for route, blocks in timetable_blocks.items():
         pdf.draw_route_blocks_compact(route, blocks, month_name, columns_per_row=columns_per_row)
     pdf.set_font("Arial","",9)
-    pdf.cell("Date : ")
+    pdf.cell(40, 5, "Date : ")
     pdf.ln(2)
     pdf.set_font("Arial","",9)
-    pdf.cell("Signature : ")
+    pdf.cell(40, 5, "Signature : ")
     pdf.ln(4)
     
     pdf.output(file_path)
